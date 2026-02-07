@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Happy Birthday, Dad</title>
+
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --bg: #f4f1ed;
+  --card: #ffffff;
+  --text-main: #2b2b2b;
+  --text-soft: #6f6f6f;
+  --accent: #b89b5e;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  height: 100vh;
+  background: var(--bg);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Inter', sans-serif;
+  color: var(--text-main);
+}
+
+.card {
+  width: 360px;
+  height: 240px;
+  perspective: 1200px;
+}
+
+.inner {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 1.2s ease;
+}
+
+.card.open .inner {
+  transform: rotateY(180deg);
+}
+
+.face {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 14px;
+  backface-visibility: hidden;
+  box-shadow: 0 18px 40px rgba(0,0,0,0.12);
+  padding: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.front {
+  background: var(--card);
+  border: 1px solid #e6e6e6;
+}
+
+.front h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 26px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.front span {
+  color: var(--accent);
+}
+
+.inside {
+  background: var(--card);
+  transform: rotateY(180deg);
+  text-align: left;
+}
+
+.inside h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px;
+  margin-bottom: 12px;
+}
+
+.inside p {
+  font-size: 14.5px;
+  line-height: 1.6;
+  color: var(--text-soft);
+}
+
+.footer {
+  margin-top: auto;
+  font-size: 13px;
+  color: var(--accent);
+}
+</style>
+</head>
+
+<body>
+
+<div class="card" onclick="this.classList.toggle('open')">
+  <div class="inner">
+    
+    <!-- Front -->
+    <div class="face front">
+      <h1>Happy Birthday,<br><span>Dad</span></h1>
+    </div>
+
+    <!-- Inside -->
+    <div class="face inside">
+      <div>
+        <h2>Dear Dad,</h2>
+        <p>
+          Thank you for everything you’ve done for our family —
+          for your patience, your strength, and the quiet ways you
+          always show up.
+          <br><br>
+          I’m incredibly grateful to have you as my father.
+          I hope this year brings you good health, peace,
+          and many moments of happiness.
+        </p>
+        <div class="footer">
+          With love
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+</body>
+</html>
