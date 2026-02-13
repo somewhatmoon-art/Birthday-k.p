@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Happy Birthday Dad 💙</title>
+  <style>
+    body {
+      margin: 0;
+      background: linear-gradient(to bottom, #001f3f, #0074D9);
+      font-family: Arial, sans-serif;
+      overflow: hidden;
+      text-align: center;
+      color: white;
+    }
+
+    .card {
+      width: 300px;
+      height: 200px;
+      background: #005bbb;
+      margin: 150px auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      border-radius: 10px;
+      transition: transform 1s;
+    }
+
+    .card.open {
+      transform: rotateY(180deg);
+    }
+
+    .inside {
+      display: none;
+      margin-top: 50px;
+    }
+
+    .cake {
+      font-size: 80px;
+    }
+
+    .flame {
+      font-size: 30px;
+    }
+
+    button {
+      padding: 10px 20px;
+      background: white;
+      color: #005bbb;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .message {
+      opacity: 0;
+      transition: opacity 1s;
+      margin: 10px;
+    }
+
+    .show {
+      opacity: 1;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="card" onclick="openCard()">
+  Click to Open 💙
+</div>
+
+<div class="inside" id="insideCard">
+  <div class="cake">🎂</div>
+  <div class="flame" id="flame">🔥🔥🔥</div>
+  <br>
+  <button onclick="blowCandles()">Blow Candles</button>
+
+  <div id="messages">
+    <div class="message">Happy Birthday Dad 💙</div>
+    <div class="message">Thank you for always protecting me.</div>
+    <div class="message">You are my hero and my inspiration.</div>
+    <div class="message">I’m so lucky to have you.</div>
+    <div class="message">I love you more than words can say.</div>
+  </div>
+</div>
+
+<script>
+function openCard() {
+  document.querySelector(".card").style.display = "none";
+  document.getElementById("insideCard").style.display = "block";
+}
+
+function blowCandles() {
+  document.getElementById("flame").style.display = "none";
+  showMessages();
+}
+
+function showMessages() {
+  let messages = document.querySelectorAll(".message");
+  messages.forEach((msg, index) => {
+    setTimeout(() => {
+      msg.classList.add("show");
+    }, index * 1000);
+  });
+}
+</script>
+
+</body>
+</html>
