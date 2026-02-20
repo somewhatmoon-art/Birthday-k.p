@@ -1,108 +1,169 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Happy Birthday papa </title>
-  <style>
-    body {
-      margin: 0;
-      background: linear-gradient(to bottom, #001f3f, #0074D9);
-      font-family: Arial, sans-serif;
-      overflow: hidden;
-      text-align: center;
-      color: white;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Papa 🎉</title>
 
-    .card {
-      width: 300px;
-      height: 200px;
-      background: #005bbb;
-      margin: 150px auto;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      cursor: pointer;
-      border-radius: 10px;
-      transition: transform 1s;
-    }
+<style>
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(-45deg, #0f3057, #00b894, #0984e3, #55efc4);
+  background-size: 400% 400%;
+  animation: gradientBG 12s ease infinite;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
+  text-align: center;
+  color: white;
+}
 
-    .card.open {
-      transform: rotateY(180deg);
-    }
+@keyframes gradientBG {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
 
-    .inside {
-      display: none;
-      margin-top: 50px;
-    }
+.card {
+  background: rgba(0,0,0,0.35);
+  padding: 25px;
+  border-radius: 20px;
+  width: 90%;
+  max-width: 420px;
+  position: relative;
+  backdrop-filter: blur(10px);
+}
 
-    .cake {
-      font-size: 80px;
-    }
+button {
+  padding: 12px 25px;
+  border: none;
+  border-radius: 25px;
+  background: #00cec9;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: 0.3s;
+}
 
-    .flame {
-      font-size: 30px;
-    }
+button:hover {
+  transform: scale(1.1);
+  background: #00b894;
+}
 
-    button {
-      padding: 10px 20px;
-      background: white;
-      color: #005bbb;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      font-weight: bold;
-    }
+.hidden {
+  display: none;
+}
 
-    .message {
-      opacity: 0;
-      transition: opacity 1s;
-      margin: 10px;
-    }
+.penguin {
+  position: absolute;
+  bottom: 0;
+  left: -150px;
+  width: 120px;
+  animation: walk 8s linear infinite;
+  cursor: pointer;
+}
 
-    .show {
-      opacity: 1;
-    }
-  </style>
+@keyframes walk {
+  from { left: -150px; }
+  to { left: 110%; }
+}
+
+.cake {
+  width: 220px;
+  margin-top: 20px;
+  animation: pop 0.8s ease forwards;
+}
+
+@keyframes pop {
+  from { transform: scale(0); opacity:0; }
+  to { transform: scale(1); opacity:1; }
+}
+
+.fadeIn {
+  animation: fade 1s ease forwards;
+}
+
+@keyframes fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.confetti {
+  position: fixed;
+  width: 10px;
+  height: 10px;
+  background: yellow;
+  top: -10px;
+  animation: fall 3s linear forwards;
+}
+
+@keyframes fall {
+  to {
+    transform: translateY(100vh) rotate(720deg);
+  }
+}
+</style>
 </head>
 
 <body>
 
-<div class="card" onclick="openCard()">
-  Click to Open 💙
-</div>
+<div class="card">
+  <h2>Hmm... something feels special today 🤔</h2>
 
-<div class="inside" id="insideCard">
-  <div class="cake">🎂</div>
-  <div class="flame" id="flame">🔥🔥🔥</div>
-  <br>
-  <button onclick="blowCandles()">Blow Candles</button>
+  <div id="message"></div>
+  <button id="partyBtn" class="hidden">Click Here 🎉</button>
 
-  <div id="messages">
-    <div class="message">Happy Birthday Dad 💙</div>
-    <div class="message">Thank you for always protecting me.</div>
-    <div class="message">You are my hero and my inspiration.</div>
-    <div class="message">I’m so lucky to have you.</div>
-    <div class="message">I love you more than words can say.</div>
+  <div id="finalSection" class="hidden">
+    <h2 class="fadeIn">Penguin threw you a party! 🎊</h2>
+    <h1 class="fadeIn">Happy Birthday Papa! 🎂</h1>
+
+    <p class="fadeIn">
+      Yes you scold us and "lecture us", but you have taught me so much this entire life. 
+      Thank you for always supporting me even though I fail at many things.
+      I appreciate you and how you keep me motivated.
+      Thank you for everything ❤️
+    </p>
+
+    <img src="cake.png" class="cake">
   </div>
+
+  <img src="penguin.gif" class="penguin" onclick="penguinClick()">
 </div>
+
+<audio id="music" loop>
+  <source src="birthday.mp3" type="audio/mpeg">
+</audio>
 
 <script>
-function openCard() {
-  document.querySelector(".card").style.display = "none";
-  document.getElementById("insideCard").style.display = "block";
+function penguinClick() {
+  document.getElementById("message").innerHTML =
+    "<p class='fadeIn'>Woah! Didn't see you there! I heard it's a VERY special day today 👀</p>";
+
+  document.getElementById("partyBtn").classList.remove("hidden");
 }
 
-function blowCandles() {
-  document.getElementById("flame").style.display = "none";
-  showMessages();
-}
+document.getElementById("partyBtn").addEventListener("click", function() {
+  document.getElementById("finalSection").classList.remove("hidden");
+  document.getElementById("music").play();
+  createConfetti();
+});
 
-function showMessages() {
-  let messages = document.querySelectorAll(".message");
-  messages.forEach((msg, index) => {
-    setTimeout(() => {
-      msg.classList.add("show");
-    }, index * 1000);
-  });
+function createConfetti() {
+  for (let i = 0; i < 50; i++) {
+    let confetti = document.createElement("div");
+    confetti.classList.add("confetti");
+    confetti.style.left = Math.random() * 100 + "vw";
+    confetti.style.backgroundColor = 
+      ["#ff7675","#74b9ff","#ffeaa7","#55efc4","#fd79a8"][Math.floor(Math.random()*5)];
+    confetti.style.animationDuration = (Math.random() * 3 + 2) + "s";
+    document.body.appendChild(confetti);
+
+    setTimeout(() => confetti.remove(), 5000);
+  }
 }
 </script>
 
